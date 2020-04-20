@@ -28,7 +28,7 @@ bot.once("ready", () => {
   getDemo(guild);
   setInterval(() => {
     getDemo(guild);
-  }, 1000 * 60 * 60 /* Time in miliseconds */);
+  }, 1000 * 60 * 5 /* Time in miliseconds */);
 });
 
 // Reconnect
