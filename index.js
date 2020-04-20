@@ -19,7 +19,7 @@ bot.once("ready", () => {
   console.log(
     `Online!`
   );
-  bot.user.setActivity("Era server");
+  bot.user.setActivity("We are the new Era.");
 
   // Guild (or group)
   const guild = bot.guilds.get("672604845806452778");
