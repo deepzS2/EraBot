@@ -7,28 +7,43 @@ const bot = new Client({
 });
 
 // Other plugins
-require("dotenv/config");
+require("dotenv").config();
 
 // Util
 const {
-  getDemo
-} = require('./util/getDemo');
+  getFirstDemo
+} = require('./util/getFirstDemo');
+
+const {
+  getSecondDemo
+} = require('./util/getSecondDemo');
 
 // When it's online
-bot.once("ready", () => {
-  console.log(
-    `Online!`
-  );
+bot.once("ready", async () => {
+  console.log(`Online!`);
   bot.user.setActivity("We are the new Era.");
 
   // Guild (or group)
   const guild = bot.guilds.get("672604845806452778");
 
-  // setInterval executes after 1 hour and because of that we use the function first here
-  getDemo(guild);
+  // setInterval executes after 5min and because of that we use the function first here
+  // First FTP
+  getFirstDemo(guild);
+
+  // Second FTP
+  // Time until next FTP
+  setTimeout(() => {
+    getSecondDemo(guild);
+  }, 10000);
+
+
   setInterval(() => {
-    getDemo(guild);
-  }, 1000 * 60 * 60 /* Time in miliseconds */);
+    getFirstDemo(guild);
+
+    setTimeout(() => {
+      getSecondDemo(guild);
+    }, 10000);
+  }, 1000 * 60 * 5 /* Time in miliseconds */);
 });
 
 // Reconnect
